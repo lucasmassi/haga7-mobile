@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "Forma Diamond",
+    "slug": "diamondapp",
+    "version": "2.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lucasmassi.diamondapp",
+      "buildNumber": "14"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon-android.jpg",
+        "backgroundColor": "#000"
+      },
+      "package": "com.lucasmassi.diamondapp",
+      "versionCode": "14"
+    },
+    "androidNavigationBar": {
+    "visible": false,
+    "barStyle": "dark-content",
+    "backgroundColor": "#000000"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Permitir FormaDiamond acessar suas fotos.",
+          "savePhotosPermission": "Permitir FormaDiamond salvar fotos.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3c990139-0083-4f0e-b8a0-c9f4988e13cb"
+      }
+    }
+  }
+}
