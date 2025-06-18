@@ -43,38 +43,35 @@ export function ForgotPassword() {
         <StatusBar style='light' />
         <Image className='h-full w-full absolute' source={require('../assets/images/background.png')} />
 
-        {/* LOGO DIAMOND */}
-        <View className='flex-row items-center w-[270] absolute p-10 ml-5'>
-            <Animated.Image entering={FadeInUp.delay(200).duration(1000).springify().damping(2)} className='w-full mt-5 ml-12' resizeMode='contain' source={require('../assets/images/formadiamond.png')} />
+          {/* LOGO DIAMOND */}
+          <View className='flex-row items-center w-[350] absolute p-10 ml-[-5px]'>
+            <Animated.Image entering={FadeInUp.delay(200).duration(1000).springify().damping(2)} className='w-full mt-5 ml-12' resizeMode='contain' source={require('../assets/images/haga7logo.png')} />
           </View>
           <View className='h-full w-full flex justify-around w-full pt-40 pb-10'>
-          <View className='flex items-center p-20 mt-60'>
-            {/* <Animated.Image entering={FadeInUp.delay(400).duration(1000).springify().damping(2)} className='w-[150]' resizeMode='contain' source={require('../assets/images/issoediamondpreto.png')} /> */}
-          </View>
           {/* FORM */}
-          <View className='flex items-center mx-4 space-y-2 mb-20'>
+          <View className='flex items-center mx-4 space-y-4 mb-20'>
             <Animated.Text entering={FadeInDown.delay(200).duration(1000).springify()} className='text-xl text-white text-center mb-5'>
               Esqueceu sua senha? Insira seu e-mail.
             </Animated.Text>
-            <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className='bg-[#202024] p-5 rounded-2xl w-full'>
-              <TextInput onChangeText={(text) => setEmail(text)} autoCapitalize={false} className='text-[#FFFFFF]'  placeholder='E-mail' placeholderTextColor={'gray'} />
+            <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className='bg-[#202024] p-5 rounded-2xl w-full' style={{ opacity: 0.7 }}>
+              <TextInput onChangeText={(text) => setEmail(text)} autoCapitalize={false} className='text-[#19BAFF] font-bold'  placeholder='E-mail' placeholderTextColor={'gray'} />
             </Animated.View >
-            <TouchableOpacity disabled={loadingEmail} onPress={(e: any) => handleSendEmail(e)} className='w-full bg-[#19BAFF] p-3 rounded-3xl mb-3'>
+            <TouchableOpacity disabled={loadingEmail} onPress={(e: any) => handleSendEmail(e)} className='w-full bg-[#11223f] p-3 rounded-2xl mb-3'>
               <Animated.View disabled={loadingEmail} entering={FadeInDown.delay(600).duration(1000).springify()} className='w-full'>
                   <View style={{
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: 23,
+                    height: 30,
                     pointerEvents: 'none'
                   }}>
-                    <Text className='text-xl text-[#202024] text-center'>Enviar código</Text>
+                    <Text className='text-xl text-[#19BAFF] text-center font-bold'>Enviar código</Text>
                   </View>
               </Animated.View>
             </TouchableOpacity>
             <Animated.View entering={FadeInDown.delay(800).duration(1000).springify()} className='flex-row justify-center'>
               <Text className='text-white'>Já tem Login?</Text>
               <TouchableOpacity onPress={() => navigation.push('SignIn')}>
-                <Text className='text-sky-600'> Lembrei minha senha.</Text>
+                <Text className='text-sky-600 text-[#19BAFF] font-bold'> Lembrei minha senha.</Text>
               </TouchableOpacity>
             </Animated.View>
           </View>

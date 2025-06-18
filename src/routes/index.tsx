@@ -10,7 +10,7 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      {!auth.authenticated || !auth.is_complete ? <StackRoutes /> : <TabRoutes /> }
+      {!auth.authenticated ? <StackRoutes /> : <TabRoutes /> }
     </NavigationContainer>
   )
 }

@@ -20,10 +20,11 @@ export default function TabRoutes() {
           height: 90,
           paddingHorizontal: 5,
           paddingTop: 5,
-          backgroundColor: '#000000',
+          backgroundColor: '#060610',
           position: 'absolute',
           borderTopWidth: 1,
-          borderTopColor: '#202020'
+          borderTopColor: '#060610',
+          // borderTopColor: '#0e0e26'
         },
       }}>
       <Tab.Screen 
@@ -31,11 +32,12 @@ export default function TabRoutes() {
         component={Home} 
         options={{
           tabBarIcon: ({ focused, color, size }) => {
-            if (focused) return <Ionicons name='home' color='#FFFFFF' size={35} />
+            if (focused) return <Ionicons name='home' color='#52b4ff' size={35} />
 
             return <Ionicons name='home-outline' color={color} size={35} />
           },
-          tabBarActiveTintColor: '#FFFFFF',
+          tabBarActiveTintColor: '#52b4ff',
+          tabBarLabelStyle: { fontWeight: 'bold' },
           tabBarLabel: 'Início'
         }}
       />
@@ -50,6 +52,7 @@ export default function TabRoutes() {
             return <Ionicons name='barcode-outline' color={color} size={35} />
           },
           tabBarActiveTintColor: '#FFFFFF',
+          tabBarLabelStyle: { fontWeight: 'bold' },
           tabBarLabel: 'Pagamentos'
         }}
       />
@@ -64,6 +67,7 @@ export default function TabRoutes() {
             return <Ionicons name='document-attach-outline' color={color} size={35} />
           },
           tabBarActiveTintColor: '#FFFFFF',
+          tabBarLabelStyle: { fontWeight: 'bold' },
           tabBarLabel: 'Contrato'
         }}
       />
@@ -101,39 +105,6 @@ export default function TabRoutes() {
           tabBarLabel: 'Álbuns'
         }}
       /> */}
-      <Tab.Screen 
-        name="Gallery"
-        component={Gallery}
-        options={{
-          tabBarIcon: ({ focused, color, size }) => {
-            if (focused) return (
-              <>
-                <Badge bg='transparent' colorScheme="danger" rounded="full" mb={-5} mr={3} zIndex={1} variant="solid" alignSelf="flex-end" _text={{
-                  fontSize: 10,
-                  color: '#19BAFF'
-                }}>
-                  <Ionicons name='sparkles-sharp' color='#fff' size={15} />
-                </Badge>
-                <Ionicons name='images' color='#FFFFFF' size={35} />
-              </>
-            )
-
-            return (
-              <>
-                <Badge bg='transparent' colorScheme="danger" rounded="full" mb={-5} mr={3} zIndex={1} variant="solid" alignSelf="flex-end" _text={{
-                  fontSize: 10,
-                  color: '#19BAFF'
-                }}>
-                  <Ionicons name='sparkles-sharp' color='#19BAFF' size={15} />
-                </Badge>
-                <Ionicons name='images-outline' color={color} size={35} />
-              </>
-            )
-          },
-          tabBarActiveTintColor: '#FFFFFF',
-          tabBarLabel: 'Galeria'
-        }}
-      />
     </Tab.Navigator>
   )
 }

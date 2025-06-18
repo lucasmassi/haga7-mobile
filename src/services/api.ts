@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
 const api = axios.create({
-  baseURL: 'https://diamond-backend-xq3f.onrender.com',
+  baseURL: 'https://api.haga7digital.com.br',
 });
 
 api.interceptors.request.use(async (config: any) => {

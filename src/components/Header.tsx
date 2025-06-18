@@ -1,12 +1,12 @@
 import React from 'react'
-import { Heading, HStack, VStack, Text, Icon, Actionsheet, Box, Badge } from "native-base";
+import { Heading, HStack, VStack, Text, Icon, Actionsheet, Box, Badge, Image } from "native-base";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { UserPhoto } from "./UserPhoto";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native"; 
 
 import { AuthContext } from '../contexts/auth';
-import { Notifications } from './Notifications';
+// import { Notifications } from './Notifications';
 
 export function HomeHeader() {
   const { handleLogout, auth } = React.useContext(AuthContext)
@@ -14,19 +14,10 @@ export function HomeHeader() {
 
   return (
     <>
-    <HStack bg="#000000" pt='15%' pb={3} px={2} alignItems="center">
-      <UserPhoto
-        source={require('../assets/images/user.png')}
-        size={14}
-        alt='Imagem usuário'
-        mr={4}
-      />
-
-      <VStack flex={1}>
-        <Text color="gray.300" fontSize="md">Bem-Vindo(a)</Text>
-        <Heading color="#FFFFFF" fontFamily="heading" fontSize="lg">{auth.name}</Heading>
-      </VStack>
-
+    <HStack bg="#060610" pt='15%' pb={3} px={2} alignItems="center">
+      <Image source={require('../assets/images/haga7logo.png')} alt='Haga7 Logo' resizeMode="cover" size={180} maxHeight={90} />
+      <Box flex={1} ml={2}></Box>
+      
       <TouchableOpacity onPress={() => setActOpen(true)}>
         {/* <Badge bg='red.600' colorScheme="danger" rounded="full" mb={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{
           fontSize: 12

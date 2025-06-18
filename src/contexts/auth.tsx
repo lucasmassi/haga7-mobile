@@ -13,11 +13,6 @@ export const AuthProvider: any = (props: any) => {
     uid: 0,
     authenticated: false,
     isLoading: false,
-    is_complete: true,
-    school: '',
-    signed: false,
-    points: 0,
-    contract_link: '',
     error: {
       has: false,
       message: '',
@@ -31,12 +26,7 @@ export const AuthProvider: any = (props: any) => {
       const userId: any = await SecureStore.getItemAsync('diamond_user_id')
       const userName: any = await SecureStore.getItemAsync('diamond_user_name')
       const email: any = await SecureStore.getItemAsync('diamond_user_email')
-      const is_complete: any = await SecureStore.getItemAsync('diamond_user_is_complete')
-      const school: any = await SecureStore.getItemAsync('diamond_user_school')
-      const signed: any = await SecureStore.getItemAsync('diamond_user_signed')
-      const points: any = await SecureStore.getItemAsync('diamond_user_points')
-      const contract_link: any = await SecureStore.getItemAsync('diamond_user_contract_link')
-  
+
       if (token && token !== '') {
         setAuth({ 
           ...auth,
@@ -44,11 +34,6 @@ export const AuthProvider: any = (props: any) => {
           uid: JSON.parse(userId),
           name: JSON.parse(userName),
           email: JSON.parse(email),
-          is_complete: JSON.parse(is_complete),
-          school: JSON.parse(school),
-          signed: JSON.parse(signed),
-          points: JSON.parse(points),
-          contract_link: JSON.parse(contract_link),
           isLoading: false,
         })
       } else {
@@ -89,15 +74,13 @@ export const AuthProvider: any = (props: any) => {
   
       const response = await api.post('/login', body)
 
+      console.log(response.data)
+
       await SecureStore.setItemAsync('diamond_token', JSON.stringify(response.data.token))
       await SecureStore.setItemAsync('diamond_user_name', JSON.stringify(response.data.user.name))
       await SecureStore.setItemAsync('diamond_user_email', JSON.stringify(response.data.user.email))
       await SecureStore.setItemAsync('diamond_user_id', JSON.stringify(response.data.user.id))
-      await SecureStore.setItemAsync('diamond_user_is_complete', JSON.stringify(response.data.user.is_complete))
-      await SecureStore.setItemAsync('diamond_user_school', JSON.stringify(response.data.user.school))
-      await SecureStore.setItemAsync('diamond_user_signed', JSON.stringify(response.data.user.signed))
-      await SecureStore.setItemAsync('diamond_user_points', JSON.stringify(response.data.user.points))
-      await SecureStore.setItemAsync('diamond_user_contract_link', JSON.stringify(response.data.user.contract_link))
+
       setAuth({
         name: response.data.user.name,
         email: response.data.user.email,
@@ -107,11 +90,6 @@ export const AuthProvider: any = (props: any) => {
           ...auth.error,
           has: false,
         },
-        is_complete: response.data.user.is_complete,
-        school: response.data.user.school,
-        signed: response.data.user.signed,
-        points: response.data.user.points,
-        contract_link: response.data.user.contract_link,
         isLoading: false,
       })
    } catch (err: any) {
@@ -133,12 +111,6 @@ export const AuthProvider: any = (props: any) => {
     await SecureStore.deleteItemAsync('diamond_user_name')
     await SecureStore.deleteItemAsync('diamond_user_email')
     await SecureStore.deleteItemAsync('diamond_user_id')
-    await SecureStore.deleteItemAsync('diamond_user_is_complete')
-    await SecureStore.deleteItemAsync('diamond_user_school')
-    await SecureStore.deleteItemAsync('diamond_user_signed')
-    await SecureStore.deleteItemAsync('diamond_user_points')
-    await SecureStore.deleteItemAsync('diamond_user_contract_link')
-    await SecureStore.deleteItemAsync('diamond_user_galleryImages')
 
     setAuth({
       name: '',
@@ -146,11 +118,6 @@ export const AuthProvider: any = (props: any) => {
       uid: 0,
       authenticated: false,
       isLoading: false,
-      is_complete: true,
-      school: '',
-      signed: false,
-      points: 0,
-      contract_link: '',
       error: {
         has: false,
         message: '',

@@ -241,31 +241,26 @@ export function Home() {
   const [selected, setSelected] = useState('');
 
   return (
-    <VStack flex={1} bgColor={"#000000"}>
+    <VStack flex={1} bgColor={"#060610"}>
       <HomeHeader />
       {/* CRONÔMETRO */}
       <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-      <VStack flex={1} alignItems='center' marginBottom={2}>
-        <Text fontSize='md' color='#FFFFFF' fontFamily='heading'>Sua conquista vai ser comemorada em...</Text>
+        <VStack flex={1} style={{ marginLeft: 5, paddingLeft: 10, paddingRight: 10 , paddingBottom: 10, marginTop: -5}}>
+          <Text fontSize='2xl' color='#FFFFFF' fontFamily='heading' marginTop={5} marginBottom={1} marginLeft={2}>Dashboard</Text>
+        </VStack>
+        <VStack h={300} flex={1} mb={5} mt={2} style={{ backgroundColor: '#0d1a31', borderRadius: 40, padding: 10, margin: 20 }}>
+          <VStack h={150} alignItems='left' flex={1}>
+            <VStack>
+                <HStack>
 
-        <HStack justifyContent="space-between" mt={5}>
-          <VStack justifyContent='center' mt='4' mr='-5' borderRadius='full' width='120' height='120' bgColor='#19BAFF' borderWidth='4' borderColor='#7DD8FF' color="gray.200" fontSize="md" fontFamily="heading">
-            <Heading color='black' fontSize='3xl' textAlign='center' alignItems='center'>{auth.points}</Heading>
-            <Heading color='black' fontSize='md' textAlign='center' alignItems='center'>Pontos</Heading>
+                </HStack>
+                <Text fontSize='md' color='#FFFFFF' fontFamily='body'>Vendas</Text>
+            </VStack>
           </VStack>
-          <VStack justifyContent='center' borderRadius='full'  width='150' height='150' bgColor='#19BAFF' borderWidth='4' borderColor='#7DD8FF' color="gray.200" fontSize="md" fontFamily="heading">
-            <Heading color='black' fontSize='6xl' textAlign='center' alignItems='center'>{daysToEnd}</Heading>
-            <Heading color='black' fontSize='md' textAlign='center' alignItems='center'>Dias</Heading>
-          </VStack>
-          <VStack justifyContent='center' mt='4' ml='-5' borderRadius='full' width='120' height='120' bgColor='#19BAFF' borderWidth='4' borderColor='#7DD8FF' color="gray.200" fontSize="md" fontFamily="heading">
-            <Heading color='black' fontSize='3xl' textAlign='center' alignItems='center'>0</Heading>
-            <Heading color='black' fontSize='md' textAlign='center' alignItems='center'>Tarefas </Heading>
-          </VStack>
-        </HStack>
-      </VStack>
+        </VStack>
 
-      <HStack mt={1}>
-          <Carousel
+        <HStack mt={1}>
+          {/* <Carousel
             data={carouselItems}
             renderItem={carouselCardItem}
             sliderWidth={SLIDER_WIDTH}
@@ -273,354 +268,14 @@ export function Home() {
             useScrollView={true}
             autoplay={true}
             loop={true}
-          />
-      </HStack>
+          /> */}
+        </HStack>
 
-      {/* <VStack flex={1} ml={2} mr={2}>
-        <Text fontSize='md' color='#FFFFFF' fontFamily='heading' marginTop={10} marginBottom={1} marginLeft={2}>Cronograma</Text>
-        <Text paddingLeft={2} paddingRight={2} marginBottom={5} fontSize='sm' color='#FFFFFF' fontFamily='body' opacity={0.5} >Acompanhe seu cronograma e se programe com antecedência!</Text>
-        
-        <Calendar
-          style={{
-            borderWidth: 1,
-            borderColor: 'gray',
-            borderRadius: '10',
-            height: 350
-          }}
-          // Specify the current date
-          current={'2024-08-07'}
-          // Callback that gets called when the user selects a day
-          onDayPress={(day: any) => {
-            console.log('selected day', day);
-          }}
-          // Mark specific dates as marked
-          markedDates={{
-            '2024-08-10': {selected: true, marked: true, selectedColor: 'blue'},
-            '2024-08-20': {marked: true},
-            '2024-08-15': {selected: true, marked: true, selectedColor: 'blue'}
-          }}
-        />
-
-        <Agenda
-        // The list of items that have to be displayed in agenda. If you want to render item as empty date
-        // the value of date key has to be an empty array []. If there exists no value for date key it is
-        // considered that the date in question is not yet loaded
-        items={{
-          '2012-05-22': [{name: 'item 1 - any js object'}],
-          '2012-05-23': [{name: 'item 2 - any js object', height: 80}],
-          '2012-05-24': [],
-          '2012-05-25': [{name: 'item 3 - any js object'}, {name: 'any js object'}]
-        }}
-        // Callback that gets called when items for a certain month should be loaded (month became visible)
-        loadItemsForMonth={month => {
-          console.log('trigger items loading');
-        }}
-        // Callback that fires when the calendar is opened or closed
-        onCalendarToggled={calendarOpened => {
-          console.log(calendarOpened);
-        }}
-        // Callback that gets called on day press
-        onDayPress={day => {
-          console.log('day pressed');
-        }}
-        // Callback that gets called when day changes while scrolling agenda list
-        onDayChange={day => {
-          console.log('day changed');
-        }}
-        // Initially selected day
-        selected={'2012-05-16'}
-        // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-        minDate={'2012-05-10'}
-        // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-        maxDate={'2012-05-30'}
-        // Max amount of months allowed to scroll to the past. Default = 50
-        pastScrollRange={50}
-        // Max amount of months allowed to scroll to the future. Default = 50
-        futureScrollRange={50}
-        // Specify how each item should be rendered in agenda
-        renderItem={(item, firstItemInDay) => {
-          return <View />;
-        }}
-        // Specify how each date should be rendered. day can be undefined if the item is not first in that day
-        renderDay={(day, item) => {
-          return <View />;
-        }}
-        // Specify how empty date content with no items should be rendered
-        renderEmptyDate={() => {
-          return <View />;
-        }}
-        // Specify how agenda knob should look like
-        renderKnob={() => {
-          return <View />;
-        }}
-        // Override inner list with a custom implemented component
-        // renderList={listProps => {
-        //   return <MyCustomList {...listProps} />;
-        // }}
-        // Specify what should be rendered instead of ActivityIndicator
-        renderEmptyData={() => {
-          return <View />;
-        }}
-        // Specify your item comparison function for increased performance
-        rowHasChanged={(r1, r2) => {
-          return r1.text !== r2.text;
-        }}
-        // Hide knob button. Default = false
-        hideKnob={true}
-        // When `true` and `hideKnob` prop is `false`, the knob will always be visible and the user will be able to drag the knob up and close the calendar. Default = false
-        showClosingKnob={false}
-        // By default, agenda dates are marked if they have at least one item, but you can override this if needed
-        markedDates={{
-          '2012-05-16': {selected: true, marked: true},
-          '2012-05-17': {marked: true},
-          '2012-05-18': {disabled: true}
-        }}
-        // If disabledByDefault={true} dates flagged as not disabled will be enabled. Default = false
-        disabledByDefault={true}
-        // If provided, a standard RefreshControl will be added for "Pull to Refresh" functionality. Make sure to also set the refreshing prop correctly
-        onRefresh={() => console.log('refreshing...')}
-        // Set this true while waiting for new data from a refresh
-        refreshing={false}
-        // Add a custom RefreshControl component, used to provide pull-to-refresh functionality for the ScrollView
-        refreshControl={null}
-        // Agenda theme
-        theme={{
-          agendaDayTextColor: 'yellow',
-          agendaDayNumColor: 'green',
-          agendaTodayColor: 'red',
-          agendaKnobColor: 'blue'
-        }}
-        // Agenda container style
-        style={{}}
-      />
-
-      </VStack> */}
-
-      <VStack flex={1} mb={20}>
-        <Text fontSize='md' color='#FFFFFF' fontFamily='heading' marginTop={5} marginBottom={1} marginLeft={2}>Chat do Formando</Text>
-        <Text paddingLeft={2} paddingRight={2} marginBottom={5} fontSize='sm' color='#FFFFFF' fontFamily='body' opacity={0.5} >Selecione o chat e fique por dentro de tudo!</Text>
-        <Stack justifyContent='space-between' direction="column" mb="10" mt="1.5" ml={2} mr={2} space={3}>
-          <Pressable onPress={() => openChat === 'geral' ? setOpenChat('') : setOpenChat('geral')}>
-            <Center justifyContent='space-around' bg={openChat === 'geral' ? 'gray.600' : 'gray.700'} rounded='md' _text={{
-                color: "white",
-                fontWeight: "bold",
-                paddingTop: 4,
-                paddingBottom: 4,
-              }} shadow={"3"}>
-                {/* <LottieView
-                  autoPlay
-                  style={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: 'transparent',
-                    position: 'absolute',
-                    alignSelf: 'flex-start',
-                    marginTop: 10
-                  }}
-                  source={require('../assets/lottie/notify-pink.json')}
-                /> */}
-                {messages.all.length === 0 ? (
-                  <Ionicons name='ellipse-sharp' color='white' size={10}
-                    style={{
-                      backgroundColor: 'transparent',
-                      position: 'absolute',
-                      alignSelf: 'flex-start',
-                      marginTop: 22,
-                      marginLeft: 27,
-                      opacity: 0.3
-                    }}
-                  />
-                ) : (
-                  <Badge colorScheme='blueGray' rounded="full" ml={5} mt={4} zIndex={1} variant="solid" alignSelf="flex-start" position='absolute' _text={{ fontSize: 12 }}>
-                    {messages.all.length}
-                  </Badge>
-                )}
-              GERAL
-            </Center>
-          </Pressable>
-            {openChat === 'geral' && messages.all.map((message: any) => {
-              return <PresenceTransition visible={openChat === 'geral'} initial={{
-                    opacity: 0
-                  }} animate={{
-                    opacity: 1,
-                    transition: {
-                      duration: 250
-                    }
-                  }}>
-                <HStack flex={1} key={message.id} borderLeftRadius={10} borderBottomLeftRadius={10} borderBottomRightRadius={10} justifyContent='space-between' bg="gray.600">
-                  <LottieView
-                    autoPlay
-                    style={{
-                      width: 50,
-                      height: 50,
-                      marginRight: 10,
-                      backgroundColor: 'transparent',
-                    }}
-                    source={require('../assets/lottie/diamond-black.json')}
-                  />
-                  <VStack flex={1}>
-                    <Text color="gray.300" fontSize="sm">Equipe Diamond</Text>
-                    <Heading paddingBottom={2} color="#FFFFFF" fontFamily="heading" fontSize="sm">{message.message}</Heading>
-                  </VStack>
-                </HStack>
-              </PresenceTransition>
-            })}
-          <Pressable onPress={() => openChat === 'school' ? setOpenChat('') : setOpenChat('school')}>
-            <Center justifyContent='space-around' bg={openChat === 'school' ? 'gray.600' : 'gray.700'}  rounded='md' _text={{
-                color: "white",
-                fontWeight: "bold",
-                paddingTop: 4,
-                paddingBottom: 4,
-              }} shadow={"3"}>
-                {/* <LottieView
-                  autoPlay
-                  style={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: 'transparent',
-                    position: 'absolute',
-                    alignSelf: 'flex-start',
-                    marginTop: 10
-                  }}
-                  source={require('../assets/lottie/notify-orange.json')}
-                /> */}
-                {/* <Ionicons name='close-outline' color='white' size={30}
-                  style={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: 'transparent',
-                    position: 'absolute',
-                    alignSelf: 'flex-start',
-                    marginTop: 10,
-                    marginLeft: 5,
-                  }}
-                /> */}
-                {messages.school.length === 0 ? (
-                  <Ionicons name='ellipse-sharp' color='white' size={10}
-                    style={{
-                      backgroundColor: 'transparent',
-                      position: 'absolute',
-                      alignSelf: 'flex-start',
-                      marginTop: 22,
-                      marginLeft: 27,
-                      opacity: 0.3
-                    }}
-                  />
-                ) : (
-                  <Badge colorScheme='warning' rounded="full" ml={5} mt={4} zIndex={1} variant="solid" alignSelf="flex-start" position='absolute' _text={{ fontSize: 12 }}>
-                    {messages.school.length}
-                  </Badge>
-                )}
-              ESCOLA
-            </Center>
-          </Pressable>
-          {openChat === 'school' && messages.school.map((message: any) => {
-              return <PresenceTransition visible={openChat === 'school'} initial={{
-                    opacity: 0
-                  }} animate={{
-                    opacity: 1,
-                    transition: {
-                      duration: 250
-                    }
-                  }}>
-                <HStack flex={1} key={message.id} borderLeftRadius={10} borderBottomLeftRadius={10} borderBottomRightRadius={10} justifyContent='space-between'
-                  bg="gray.600">
-                  <LottieView
-                    autoPlay
-                    style={{
-                      width: 50,
-                      height: 50,
-                      marginRight: 10,
-                      backgroundColor: 'transparent',
-                    }}
-                    source={require('../assets/lottie/diamond-black.json')}
-                  />
-                  <VStack flex={1}>
-                    <Text color="gray.300" fontSize="sm">Equipe Diamond</Text>
-                    <Heading paddingBottom={2} color="#FFFFFF" fontFamily="heading" fontSize="sm">{message.message}</Heading>
-                  </VStack>
-                </HStack>
-              </PresenceTransition>
-            })}
-          <Pressable onPress={() => openChat === 'my' ? setOpenChat('') : setOpenChat('my')}>
-            <Center justifyContent='space-around' bg={openChat === 'my' ? 'gray.600' : 'gray.700'}  rounded='md' _text={{
-                color: "white",
-                fontWeight: "bold",
-                paddingTop: 4,
-                paddingBottom: 4,
-              }} shadow={"3"}>
-                {/* <LottieView
-                  autoPlay
-                  style={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: 'transparent',
-                    position: 'absolute',
-                    alignSelf: 'flex-start',
-                    marginTop: 10
-                  }}
-                  source={require('../assets/lottie/notify-blue.json')}
-                /> */}
-                {/* <Ionicons name='close-outline' color='white' size={30}
-                  style={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: 'transparent',
-                    position: 'absolute',
-                    alignSelf: 'flex-start',
-                    marginTop: 10,
-                    marginLeft: 5,
-                  }}
-                /> */}
-                {messages.my.length === 0 ? (
-                  <Ionicons name='ellipse-sharp' color='white' size={10}
-                    style={{
-                      backgroundColor: 'transparent',
-                      position: 'absolute',
-                      alignSelf: 'flex-start',
-                      marginTop: 22,
-                      marginLeft: 27,
-                      opacity: 0.3
-                    }}
-                  />
-                ) : (
-                <Badge colorScheme='cyan' rounded="full" ml={5} mt={4} zIndex={1} variant="solid" alignSelf="flex-start" position='absolute' _text={{ fontSize: 12 }}>
-                  {messages.my.length}
-                </Badge>
-                )}
-              MEU CHAT
-            </Center>
-          </Pressable>
-          {openChat === 'my' && messages.my.map((message: any) => {
-              return <PresenceTransition visible={openChat === 'my'} initial={{
-                opacity: 0
-              }} animate={{
-                opacity: 1,
-                transition: {
-                  duration: 250
-                }
-              }}> 
-                <HStack flex={1} key={message.id} borderLeftRadius={10} borderBottomLeftRadius={10} borderBottomRightRadius={10} justifyContent='space-between'
-                  bg="gray.600">
-                  <LottieView
-                    autoPlay
-                    style={{
-                      width: 50,
-                      height: 50,
-                      marginRight: 10,
-                      backgroundColor: 'transparent',
-                    }}
-                    source={require('../assets/lottie/diamond-black.json')}
-                  />
-                  <VStack flex={1}>
-                    <Text color="gray.300" fontSize="sm">Equipe Diamond</Text>
-                    <Heading paddingBottom={2} color="#FFFFFF" fontFamily="heading" fontSize="sm">{message.message}</Heading>
-                  </VStack>
-                </HStack>
-              </PresenceTransition>
-            })}
-        </Stack>
-      </VStack>
+        {/* <VStack flex={1} mb={20} mt={20} style={{ backgroundColor: 'transparent'}}>
+          <Text fontSize='md' color='#FFFFFF' fontFamily='heading' marginTop={5} marginBottom={1} marginLeft={2}>Chat do Formando</Text>
+          <Text paddingLeft={2} paddingRight={2} marginBottom={5} fontSize='sm' color='#FFFFFF' fontFamily='body' opacity={0.5} >Selecione o chat e fique por dentro de tudo!</Text>
+          
+        </VStack> */}
       </ScrollView>
     </VStack>
   )
